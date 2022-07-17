@@ -1,0 +1,13 @@
+server.port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5430/spring_reddit_clone?useTimezone=true&serverTimezone=UTC&useLegacyDate
+    username: cami
+    password: 0&gn^I3@a*fa%B#p
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate.format_sql: true

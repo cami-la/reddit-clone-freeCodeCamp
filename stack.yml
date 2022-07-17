@@ -1,0 +1,23 @@
+
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres:alpine
+    #restart: always
+    ports:
+      - 5430:5432
+    environment:
+      POSTGRES_USER: cami
+      POSTGRES_PASSWORD: 0&gn^I3@a*fa%B#p
+    volumes:
+      - freeCodeCamp_redditClone:/var/lib/postgres
+
+volumes:
+  freeCodeCamp_redditClone:
+
+networks:
+  default:
+    name: freeCodeCamp_redditClone-net
+
