@@ -11,3 +11,10 @@ spring:
       ddl-auto: create-drop
     properties:
       hibernate.format_sql: true
+  mail:
+    default-encodig: UTF-8
+    host: smtp.mailtrap.io
+    port: 25
+    username: 7f5c77bd56686f
+    password: 1f417be3949848
+    protocol: smtp
