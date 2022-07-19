@@ -5,12 +5,9 @@ import com.freecodecamp.redditclone.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/api/auth/")
+@RequestMapping("/api/auth")
 @RestController
 @RequiredArgsConstructor
 public class AuthController {
@@ -20,5 +17,11 @@ public class AuthController {
   public ResponseEntity<String> signup(@RequestBody RegisterRequest registerRequest) {
     authService.signup(registerRequest);
     return new ResponseEntity<>("User Registration Successful", HttpStatus.OK);
+  }
+
+  @GetMapping("/accountVerification/{token}")
+  public ResponseEntity<String> verifyAccount(@PathVariable(name = "token") String token) {
+    authService.verifyAccount(token);
+    return new ResponseEntity<>("Account activated successfully", HttpStatus.OK);
   }
 }
