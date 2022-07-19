@@ -2,6 +2,7 @@ package com.freecodecamp.redditclone.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import java.time.Instant;
 
 @AllArgsConstructor
 @Builder
+@Data
 @Entity
 @NoArgsConstructor
 public class RedditUser {
