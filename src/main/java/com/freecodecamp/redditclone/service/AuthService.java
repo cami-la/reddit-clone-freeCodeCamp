@@ -1,5 +1,6 @@
 package com.freecodecamp.redditclone.service;
 
+import com.freecodecamp.redditclone.dto.LoginRequest;
 import com.freecodecamp.redditclone.dto.RegisterRequest;
 import com.freecodecamp.redditclone.exception.SpringRedditException;
 import com.freecodecamp.redditclone.model.NotificationEmail;
@@ -8,6 +9,7 @@ import com.freecodecamp.redditclone.model.VerificationToken;
 import com.freecodecamp.redditclone.repository.RedditUserRepository;
 import com.freecodecamp.redditclone.repository.VerificationTokenRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,7 @@ public class AuthService {
   private final RedditUserRepository userRepository;
   private final VerificationTokenRepository verificationTokenRepository;
   private final MailService mailService;
+  private final AuthenticationManager authenticationManager;
 
   public void signup(RegisterRequest registerRequest) {
     RedditUser user = RedditUser.builder()
@@ -29,7 +32,6 @@ public class AuthService {
         .email(registerRequest.getEmail())
         .password(passwordEncoder.encode(registerRequest.getPassword()))
         .created(Instant.now())
-        .enable(false)
         .build();
     userRepository.save(user);
     String token = generateVerificationToken(user);
@@ -65,7 +67,11 @@ public class AuthService {
         .orElseThrow(() -> {
           throw new SpringRedditException(String.format("User %s not found!", username));
         });
-    user.setEnable(true);
+    user.isEnabled(true);
     userRepository.save(user);
+  }
+
+  public void login(LoginRequest loginRequest) {
+
   }
 }

@@ -1,5 +1,6 @@
 package com.freecodecamp.redditclone.controller;
 
+import com.freecodecamp.redditclone.dto.LoginRequest;
 import com.freecodecamp.redditclone.dto.RegisterRequest;
 import com.freecodecamp.redditclone.service.AuthService;
 import lombok.RequiredArgsConstructor;
@@ -23,5 +24,10 @@ public class AuthController {
   public ResponseEntity<String> verifyAccount(@PathVariable(name = "token") String token) {
     authService.verifyAccount(token);
     return new ResponseEntity<>("Account activated successfully", HttpStatus.OK);
+  }
+
+  @PostMapping("/login")
+  public void login(@RequestBody LoginRequest loginRequest) {
+    authService.login(loginRequest);
   }
 }
