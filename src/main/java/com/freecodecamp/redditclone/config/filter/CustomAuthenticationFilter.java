@@ -1,4 +1,4 @@
-package com.freecodecamp.redditclone.filter;
+package com.freecodecamp.redditclone.config.filter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
